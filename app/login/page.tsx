@@ -34,4 +34,3 @@ export default function LogIn() {
       <SocialLogin />
     </div>
   );
-}
