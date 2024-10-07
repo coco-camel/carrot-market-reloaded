@@ -49,9 +49,9 @@ export default async function ProductDetail({
     <div>
       <div className="relative aspect-square">
         <Image
-          className="object-cover"
           fill
           src={product.photo}
+          className="object-cover"
           alt={product.title}
         />
       </div>
