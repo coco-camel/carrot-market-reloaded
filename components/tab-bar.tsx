@@ -1,4 +1,5 @@
 "use client";
+
 import {
   HomeIcon as SolidHomeIcon,
   NewspaperIcon as SolidNewspaperIcon,
@@ -15,6 +16,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 export default function TabBar() {
   const pathname = usePathname();
   return (

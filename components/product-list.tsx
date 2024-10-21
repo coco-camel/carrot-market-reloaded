@@ -1,8 +1,9 @@
 "use client";
+
+import { InitialProducts } from "@/app/(tabs)/products/page";
 import ListProduct from "./list-product";
 import { useEffect, useRef, useState } from "react";
 import { getMoreProducts } from "@/app/(tabs)/products/action";
-import { InitialProducts } from "@/app/(tabs)/products/page";
 
 interface ProductListProps {
   initialProducts: InitialProducts;
@@ -36,7 +37,6 @@ export default function ProductList({ initialProducts }: ProductListProps) {
       },
       {
         threshold: 1.0,
-        rootMargin: "0px 0px -100px 0px",
       }
     );
     if (trigger.current) {
@@ -51,7 +51,7 @@ export default function ProductList({ initialProducts }: ProductListProps) {
       {products.map((product) => (
         <ListProduct key={product.id} {...product} />
       ))}
-      {isLastPage ? (
+      {!isLastPage ? (
         <span
           ref={trigger}
           style={{
