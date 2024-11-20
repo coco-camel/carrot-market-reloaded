@@ -1,35 +1,25 @@
 "use server";
 
-import { z } from "zod";
-import fs from "fs/promises";
+// import fs from "fs/promises";
 import db from "@/lib/db";
 import getSession from "@/lib/session";
 import { redirect } from "next/navigation";
+import { productSchema } from "./schema";
 
-const productSchema = z.object({
-  photo: z
-    .string({
-      required_error: "photo is required",
-    })
-    .min(10)
-    .max(50),
-  title: z.string({ required_error: "title is required" }),
-  description: z.string({ required_error: "description is required" }),
-  price: z.coerce.number({ required_error: "price is required" }),
-});
-
-export async function uploadProduct(_: any, formData: FormData) {
+export async function uploadProduct(formData: FormData) {
   const data = {
     photo: formData.get("photo"),
     title: formData.get("title"),
     price: formData.get("price"),
     description: formData.get("description"),
   };
+
   // if (data.photo instanceof File) {
   //   const photoData = await data.photo.arrayBuffer();
   //   await fs.appendFile(`./public/${data.photo.name}`, Buffer.from(photoData));
   //   data.photo = `/${data.photo.name}`;
-  // }
+  // } public folder save
+
   const result = productSchema.safeParse(data);
   if (!result.success) {
     return result.error.flatten();
