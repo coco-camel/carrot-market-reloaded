@@ -1,6 +1,6 @@
 "use server";
 import db from "@/lib/db";
-export async function getMoreProducts(page: number) {
+export async function getMoreProducts() {
   const products = await db.product.findMany({
     select: {
       title: true,
